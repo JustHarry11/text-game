@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Fiction Game</title>
+
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: Consolas, monospace;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    #game {
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+    }
+
+    #input {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+
+    #submit {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Interactive Fiction</h1>
+
+  <div id="game"></div>
+
+  <input id="input" type="text" placeholder="Type a command..." />
+  <button id="submit">Submit</button>
+
+  <script src="game.js"></script>
+</body>
+</html>
