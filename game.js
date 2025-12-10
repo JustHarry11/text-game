@@ -1,3 +1,8 @@
+// --- GAME ELEMENTS ---
+const screen = document.getElementById("screen");
+const input = document.getElementById("input");
+const submit = document.getElementById("submit");
+
 // --- STORY DATA ---
 const story = {
   start: {
@@ -54,20 +59,33 @@ const story = {
   }
 };
 
-// --- GAME ENGINE ---
+// --- GAME STATE ---
 let current = "start";
 
-function render() {
-  const container = document.getElementById("game");
-  const node = story[current];
-
-  container.innerHTML = `<p>${node.text}</p>`;
+// --- TYPING EFFECT ---
+function typeText(element, text, index = 0) {
+  if (index < text.length) {
+    element.innerHTML += text[index];
+    element.scrollTop = element.scrollHeight; // auto-scroll
+    setTimeout(() => typeText(element, text, index + 1), 18);
+  }
 }
 
+// --- RENDER FUNCTION ---
+function render() {
+  const node = story[current];
+  screen.innerHTML += "\n"; // spacing between scenes
+  typeText(screen, node.text + "\n");
+}
+
+// --- HANDLE COMMAND ---
 function handleCommand() {
-  const input = document.getElementById("input");
   const command = input.value.toLowerCase().trim();
   input.value = "";
+
+  // Echo the command to the screen
+  screen.innerHTML += `> ${command}\n`;
+  screen.scrollTop = screen.scrollHeight;
 
   const node = story[current];
 
@@ -75,18 +93,16 @@ function handleCommand() {
     current = node.commands[command];
     render();
   } else {
-    // Feedback for invalid command
-    document.getElementById("game").innerHTML += `
-      <p><em>I don't understand that command.</em></p>
-    `;
+    typeText(screen, "I don't understand that command.\n");
   }
 }
 
-document.getElementById("submit").onclick = handleCommand;
+// --- EVENT LISTENERS ---
+submit.addEventListener("click", handleCommand);
 
-// Allow pressing Enter to submit
-document.getElementById("input").addEventListener("keydown", (e) => {
+input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") handleCommand();
 });
 
+// --- START GAME ---
 render();

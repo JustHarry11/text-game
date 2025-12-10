@@ -7,40 +7,69 @@
 
   <style>
     body {
-      background: #111;
-      color: #eee;
-      font-family: Consolas, monospace;
+      background: #000;
+      color: #33ff33; /* retro green */
+      font-family: "Courier New", monospace;
       padding: 20px;
       line-height: 1.5;
     }
 
-    #game {
+    #screen {
+      background: #000;
+      border: 2px solid #33ff33;
+      padding: 20px;
       margin-bottom: 20px;
+      height: 300px;
+      overflow-y: auto;
       white-space: pre-wrap;
+      box-shadow: 0 0 15px #33ff33;
     }
 
     #input {
       width: 80%;
       padding: 10px;
       font-size: 16px;
+      background: #000;
+      color: #33ff33;
+      border: 2px solid #33ff33;
       font-family: inherit;
     }
 
     #submit {
       padding: 10px 20px;
       font-size: 16px;
-      font-family: inherit;
+      background: #000;
+      color: #33ff33;
+      border: 2px solid #33ff33;
       cursor: pointer;
+      font-family: inherit;
+    }
+
+    #submit:hover {
+      background: #033003;
+    }
+
+    /* Blinking cursor effect */
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background: #33ff33;
+      animation: blink 0.6s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
     }
   </style>
 </head>
 
 <body>
-  <h1>Interactive Fiction</h1>
+  <h1>Terminal IF</h1>
 
-  <div id="game"></div>
+  <div id="screen"></div>
 
-  <input id="input" type="text" placeholder="Type a command..." />
+  <input id="input" type="text" placeholder="Type a command..." autocomplete="off" />
   <button id="submit">Submit</button>
 
   <script src="game.js"></script>
