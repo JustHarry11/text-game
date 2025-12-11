@@ -8,36 +8,46 @@ const story = {
   start: {
     text: "You wake up in a dark forest. Paths lead north and east.",
     commands: {
-      "go north": "cabin",
-      "north": "cabin",
+      "go north": "cave",
+      "north": "cave",
       "go east": "river",
       "east": "river"
     }
   },
 
-  cabin: {
-    text: "You find a small cabin. The door is slightly open.",
+  cave: {
+    text: "You find a cave entrance. There is a light inside.",
     commands: {
-      "enter cabin": "insideCabin",
-      "enter": "insideCabin",
+      "enter cave": "insideCave",
+      "enter": "insideCave",
       "go back": "start",
       "back": "start"
     }
   },
 
-  insideCabin: {
-    text: "Inside the cabin is a lantern on a table.",
+  insideCave: {
+    text: "Inside the cave is two routes, one one the left and one on the right.",
     commands: {
-      "take lantern": "lanternTaken",
-      "leave": "cabin",
-      "leave cabin": "cabin"
+      "go left": "entranceLeft",
+      "left": "entranceLeft",
+      "go right": "entranceRight",
+      "right": "entranceRight",
+      "leave": "cave",
+      "leave cave": "cave"
     }
   },
 
-  lanternTaken: {
-    text: "You take the lantern. The room grows darker.",
+  entranceLeft: {
+    text: "Left.",
     commands: {
-      "leave": "cabin"
+      "leave": "cave"
+    }
+  },
+
+  entranceRight: {
+    text: "Right.",
+    commands: {
+      "leave": "cave"
     }
   },
 
